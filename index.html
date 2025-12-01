@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Devegyaas Bakery — Fresh Cakes & Breads</title>
+  <meta name="description" content="Devegyaas Bakery — Freshly baked cakes, breads & custom cakes. Order for birthdays, events and everyday treats." />
+
+  <style>
+    /* ---------- Basic / Theme ---------- */
+    :root{
+      --bg: #fff9f4;
+      --card: #fff;
+      --accent:#d35400; /* bakery orange */
+      --muted:#6b6b6b;
+      --radius:12px;
+      --maxw:1100px;
+      --shadow: 0 6px 20px rgba(0,0,0,0.08);
+      --gap:18px;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:linear-gradient(180deg, #fff 0%, #fff9f4 100%);
+      color:#222;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    .container{max-width:var(--maxw); margin:0 auto; padding:28px;}
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; padding:18px 0;
+    }
+    .brand{display:flex; gap:12px; align-items:center; text-decoration:none; color:inherit;}
+    .logo{
+      width:56px; height:56px; border-radius:12px; background:linear-gradient(135deg,#ffe6d7,#ffd1b8);
+      display:flex; align-items:center; justify-content:center; font-weight:700; font-size:18px; box-shadow:var(--shadow);
+    }
+    nav a{margin-left:14px; text-decoration:none; color:var(--muted); font-weight:600; font-size:14px;}
+    .cta{background:var(--accent); color:white; border:none; padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:700;}
+    /* ---------- Hero ---------- */
+    .hero{
+      display:grid; grid-template-columns: 1fr 420px; gap:var(--gap); align-items:center;
+      margin-top:18px;
+    }
+    .hero-card{
+      background:var(--card); border-radius:var(--radius); padding:28px; box-shadow:var(--shadow);
+    }
+    h1{font-size:28px; margin:0 0 8px 0;}
+    p.lead{color:var(--muted); margin:0 0 18px 0;}
+    .hero-gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:8px;}
+    .hero-gallery img{width:100%; height:110px; object-fit:cover; border-radius:8px; display:block;}
+    /* ---------- Menu ---------- */
+    .section{margin:44px 0;}
+    .section h2{margin:0 0 10px 0;}
+    .menu-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+    .item{
+      background:var(--card); border-radius:12px; padding:14px; box-shadow:var(--shadow);
+      display:flex; gap:12px; align-items:center;
+    }
+    .item img{width:88px; height:72px; object-fit:cover; border-radius:8px; flex-shrink:0;}
+    .item .meta{flex:1}
+    .item .meta h3{margin:0; font-size:16px;}
+    .item .meta p{margin:6px 0 0 0; color:var(--muted); font-size:13px;}
+    .price{font-weight:800; color:var(--accent); font-size:15px;}
+    .order-btn{background:#fff; border:2px solid var(--accent); color:var(--accent); padding:8px 10px; border-radius:8px; cursor:pointer; font-weight:700;}
+    /* ---------- Gallery ---------- */
+    .gallery-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px;}
+    .gallery-grid img{width:100%; height:160px; object-fit:cover; border-radius:10px; display:block;}
+    /* ---------- About & Contact ---------- */
+    .two-col{display:grid; grid-template-columns:1fr 1fr; gap:var(--gap);}
+    .contact-card{background:var(--card); padding:18px; border-radius:12px; box-shadow:var(--shadow);}
+    .contact-list{list-style:none; padding:0; margin:0;}
+    .contact-list li{margin:8px 0; color:var(--muted);}
+    .socials{display:flex; gap:10px; margin-top:10px;}
+    .socials a{display:inline-block; padding:8px; border-radius:8px; text-decoration:none; border:1px solid rgba(0,0,0,0.06);}
+    /* ---------- Form ---------- */
+    form .row{display:flex; gap:8px}
+    input, textarea, select{width:100%; padding:10px; border-radius:8px; border:1px solid #eee; font-size:14px;}
+    label{font-size:13px; color:var(--muted); margin-bottom:6px; display:block;}
+    .submit{background:var(--accent); color:white; border:none; padding:12px 16px; border-radius:10px; font-weight:700; cursor:pointer;}
+    /* ---------- Footer ---------- */
+    footer{margin:38px 0; text-align:center; color:var(--muted); font-size:14px;}
+    /* ---------- Responsive ---------- */
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr;}
+      .menu-grid{grid-template-columns:repeat(2,1fr);}
+      .gallery-grid{grid-template-columns:repeat(3,1fr);}
+      .two-col{grid-template-columns:1fr;}
+    }
+    @media (max-width:600px){
+      header{flex-direction:column; align-items:flex-start;}
+      nav{order:2; margin-top:6px;}
+      .menu-grid{grid-template-columns:1fr;}
+      .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <a href="#" class="brand" aria-label="Devegyaas Bakery home">
+        <div class="logo">DB</div>
+        <div>
+          <div style="font-weight:800">Devegyaas Bakery</div>
+          <div style="color:var(--muted); font-size:13px">Fresh cakes · Custom orders · Delhi</div>
+        </div>
+      </a>
+
+      <nav aria-label="Main menu">
+        <a href="#menu">Menu</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#order">Order</a>
+        <a href="#contact">Contact</a>
+        <a href="https://www.instagram.com/devegyaasbakery" target="_blank" rel="noopener" class="cta">Follow on Instagram</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-card">
+        <h1>Handmade Cakes & Breads — Daily Fresh</h1>
+        <p class="lead">Custom birthday cakes, freshly baked breads, pastries & more. Made with love and high-quality ingredients. Pickup & delivery across Delhi (update area).</p>
+
+        <div style="display:flex; gap:12px; margin-bottom:14px;">
+          <button class="cta" onclick="scrollToSection('order')">Order Now</button>
+          <button class="order-btn" onclick="openCustomOrder()">Custom Cake Enquiry</button>
+        </div>
+
+        <div style="margin-top:10px;">
+          <strong>Top Sellers</strong>
+          <div class="hero-gallery" style="margin-top:10px;">
+            <!-- Replace these images with your best photos -->
+            <img src="./images/choco truffle.jpg" alt="Chocolate Truffle Cake">
+            <img src="./images/bread photo.jpg" alt="Fresh Breads">
+            <img src="./images/cupcake.jpg" alt="cupcake">
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column: highlight box -->
+      <aside>
+        <div class="hero-card">
+          <h3 style="margin-top:0">Today’s Special</h3>
+          <p class="lead" style="margin:6px 0 14px 0">Order a 1kg Chocolate Truffle and get 10% off on cupcakes (today only).</p>
+
+          <div style="display:flex; gap:10px; align-items:center;">
+            <img src="./images/choco truffle.jpg" alt="Special cake (replace src)" style="width:120px; height:120px; border-radius:12px; object-fit:cover; box-shadow:var(--shadow)">
+            <div>
+              <div style="font-weight:800">Chocolate Truffle 1kg</div>
+              <div style="color:var(--muted); margin-top:6px">Starts at <span class="price">₹1,500</span></div>
+              <div style="margin-top:10px;">
+                <button class="cta" onclick="addToCart('Chocolate Truffle - 1kg')">Order</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="hero-card" aria-hidden>
+          <strong>Quick Contact</strong>
+          <p style="margin:8px 0 0 0; color:var(--muted)">WhatsApp orders: <br/><a href="https://wa.me/919999999999" target="_blank" rel="noopener" style="color:var(--accent); font-weight:700; text-decoration:none">+91 99999 99999</a></p>
+          <p style="margin:10px 0 0 0; color:var(--muted)">Open: 8:00 AM — 9:00 PM</p>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu" class="section">
+      <h2>Our Menu</h2>
+      <p style="color:var(--muted); margin:6px 0 18px 0">A selection of our cakes, breads, pastries and seasonal treats. Prices indicative — for custom orders contact us.</p>
+
+      <div class="menu-grid">
+        <!-- item 1 -->
+        <div class="item">
+          <img src="./images/choco truffle.jpg" alt="Chocolate Truffle Cake (replace)">
+          <div class="meta">
+            <h3>Chocolate Truffle Cake</h3>
+            <p>Rich dark chocolate layers, smooth ganache. Starting from 1kg.</p>
+          </div>
+          <div style="text-align:right">
+            <div class="price">₹1,500</div>
+            <div style="margin-top:8px"><button class="order-btn" onclick="openCustomOrder('Chocolate Truffle Cake')">Order</button></div>
+          </div>
+        </div>
+
+        <!-- item 2 -->
+        <div class="item">
+          <img src="./images/vanila_cake.jpg" alt="Classic Vanilla Cake">
+          <div class="meta">
+            <h3>Classic Vanilla Cake</h3>
+            <p>Soft vanilla sponge with buttercream — great for birthdays.</p>
+          </div>
+          <div style="text-align:right">
+            <div class="price">₹1,200</div>
+            <div style="margin-top:8px"><button class="order-btn" onclick="openCustomOrder('Classic Vanilla Cake')">Order</button></div>
+          </div>
+        </div>
+
+        <!-- item 3 -->
+        <div class="item">
+          <img src="./images/Vegan-Croissants-1.jpg" alt="Assorted Breads">
+          <div class="meta">
+            <h3>Assorted Breads</h3>
+            <p>Daily fresh — sandwich loaves, baguette, whole wheat.</p>
+          </div>
+          <div style="text-align:right">
+            <div class="price">From ₹80</div>
+            <div style="margin-top:8px"><button class="order-btn" onclick="openCustomOrder('Assorted Breads')">Order</button></div>
+          </div>
+        </div>
+
+        <!-- item 4 -->
+        <div class="item">
+          <img src="./images/cupcake.jpg" alt="Cupcakes">
+          <div class="meta">
+            <h3>Cupcakes (assorted)</h3>
+            <p>Perfect for parties and custom flavours available.</p>
+          </div>
+          <div style="text-align:right">
+            <div class="price">₹80 / pc</div>
+            <div style="margin-top:8px"><button class="order-btn" onclick="openCustomOrder('Cupcakes')">Order</button></div>
+          </div>
+        </div>
+
+        <!-- item 5 -->
+        <div class="item">
+          <img src="./images/classic-chocolate-chip-cookies.jpg" alt="Cookies">
+          <div class="meta">
+            <h3>Cookies & Biscuits</h3>
+            <p>Homemade cookies: chocolate chip, butter & more.</p>
+          </div>
+          <div style="text-align:right">
+            <div class="price">From ₹120</div>
+            <div style="margin-top:8px"><button class="order-btn" onclick="openCustomOrder('Cookies')">Order</button></div>
+          </div>
+        </div>
+
+        <!-- item 6 -->
+        <div class="item">
+          <img src="./images/special_platter.jpg" alt="Special Platters">
+          <div class="meta">
+            <h3>Party Platters</h3>
+            <p>Custom dessert platters for events & office orders.</p>
+          </div>
+          <div style="text-align:right">
+            <div class="price">Custom</div>
+            <div style="margin-top:8px"><button class="order-btn" onclick="openCustomOrder('Party Platter')">Enquire</button></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="section">
+      <h2>Gallery</h2>
+      <p style="color:var(--muted)">Photos from recent orders — replace these with images from your Instagram feed for best effect.</p>
+
+      <div class="gallery-grid" style="margin-top:12px;">
+        <img src="./images/bread photo.jpg" alt="Gallery image 1">
+        <img src="./images/choco truffle.jpg" alt="Gallery image 2">
+        <img src="./images/cupcake.jpg" alt="Gallery image 3">
+        <img src="./images/special_platter.jpg" alt="Gallery image 4">
+      </div>
+      <!--<p style="margin-top:12px; color:var(--muted)">Pro tip: you can embed your Instagram grid here via a plugin or fetch images and show latest .</p>-->
+    </section>
+
+    <!-- About + Contact -->
+    <section class="section">
+      <div class="two-col">
+        <div>
+          <h2>About Devegyaas Bakery</h2>
+          <p style="color:var(--muted)">Started with a small oven and a big dream — Devegyaas Bakery crafts fresh cakes, breads and pastries daily. We focus on quality ingredients, clean preparation and custom designs for birthdays and events.</p>
+
+          <h3 style="margin-top:18px">Why choose us?</h3>
+          <ul style="color:var(--muted)">
+            <li>Made-to-order custom designs</li>
+            <li>Fresh daily baking & hygiene focused</li>
+            <li>Pickup & local delivery options</li>
+          </ul>
+        </div>
+
+        <div class="contact-card" id="contact">
+          <h2>Contact & Location</h2>
+
+          <ul class="contact-list">
+            <li><strong>WhatsApp / Phone:</strong> <a href="https://wa.me/919999999999" target="_blank" rel="noopener" style="color:var(--accent); text-decoration:none">+91 99999 99999</a></li>
+            <li><strong>Email:</strong> <a href="mailto:hello@devegyaasbakery.com" style="color:var(--muted); text-decoration:none">hello@devegyaasbakery.com</a></li>
+            <li><strong>Address:</strong> Your shop address here — replace with real address.</li>
+            <li><strong>Hours:</strong> 8:00 AM — 9:00 PM</li>
+          </ul>
+
+          <div class="socials" style="margin-top:10px">
+            <a href="https://www.instagram.com/devegyaasbakery" target="_blank" rel="noopener">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">Google</a>
+          </div>
+
+          <div style="margin-top:12px;">
+            <!-- Replace with your Google Maps embed iframe -->
+            <div style="border-radius:10px; overflow:hidden; box-shadow:var(--shadow)">
+              <iframe title="map" src="https://maps.google.com/maps?q=New%20Delhi&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" width="100%" height="180" style="border:0;"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Order / Custom Form -->
+    <section id="order" class="section">
+      <h2>Custom Order Form</h2>
+      <p style="color:var(--muted)">Fill this to enquire — we will contact within the same day. (This demo form does not send emails; see instructions below to connect.)</p>
+
+      <div class="contact-card" style="margin-top:12px;">
+        <form id="orderForm" onsubmit="submitOrder(event)">
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <div style="flex:1; min-width:200px;">
+              <label for="name">Name</label>
+              <input id="name" name="name" required placeholder="Your name">
+            </div>
+            <div style="flex:1; min-width:200px;">
+              <label for="phone">Phone / WhatsApp</label>
+              <input id="phone" name="phone" required placeholder="+91 9XXXXXXXXX">
+            </div>
+          </div>
+
+          <div style="display:flex; gap:12px; margin-top:12px; flex-wrap:wrap;">
+            <div style="flex:1; min-width:200px;">
+              <label for="product">Product / Cake</label>
+              <input id="product" name="product" placeholder="E.g. Chocolate Truffle - 1 kg">
+            </div>
+            <div style="flex:1; min-width:200px;">
+              <label for="date">Date Needed</label>
+              <input id="date" name="date" type="date" required>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <label for="notes">Special Instructions</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="Design description, flavours, pickup or delivery, address..."></textarea>
+          </div>
+
+          <div style="display:flex; gap:12px; margin-top:12px; align-items:center;">
+            <button class="submit" type="submit">Send Enquiry</button>
+            <button type="button" class="order-btn" onclick="openWhatsAppForm()">Send via WhatsApp</button>
+            <div id="formMsg" style="color:var(--muted); font-size:13px"></div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <strong>Devegyaas Bakery</strong> — Made with ❤️. Follow on <a href="https://www.instagram.com/devegyaasbakery" target="_blank" rel="noopener" style="color:var(--accent);">Instagram</a></div>
+    </footer>
+
+  </div>
+
+  <script>
+    /* ---------- Simple JS for interactions (no backend) ---------- */
+
+    function scrollToSection(id){
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    function openCustomOrder(pref){
+      scrollToSection('order');
+      if(pref){
+        document.getElementById('product').value = pref;
+      }
+      document.getElementById('name').focus();
+    }
+
+    function addToCart(item){
+      // lightweight UX: open order form prefilled
+      openCustomOrder(item);
+      alert(item + " — add details & send enquiry in the form.");
+    }
+
+    function submitOrder(ev){
+      ev.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const product = document.getElementById('product').value.trim();
+      const date = document.getElementById('date').value;
+      const notes = document.getElementById('notes').value.trim();
+
+      if(!name || !phone || !date){
+        document.getElementById('formMsg').textContent = "Please fill required fields.";
+        return;
+      }
+
+      // Demo behaviour: display summary and suggest WhatsApp
+      const summary = `Order enquiry:
+Name: ${name}
+Phone: ${phone}
+Product: ${product}
+Date: ${date}
+Notes: ${notes}`;
+
+      document.getElementById('formMsg').textContent = "Enquiry prepared. Use WhatsApp to send or contact us.";
+      // open Whatsapp prefill
+      const waNumber = "919999999999"; // REPLACE with your number without + or leading zeros
+      const waText = encodeURIComponent(summary);
+      const waUrl = https://wa.me/${waNumber}?text=${waText};
+      // show choose: open WhatsApp in new tab
+      window.open(waUrl, '_blank');
+    }
+
+    function openWhatsAppForm(){
+      // Prepares the same message and opens WhatsApp
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const product = document.getElementById('product').value.trim();
+      const date = document.getElementById('date').value;
+      const notes = document.getElementById('notes').value.trim();
+
+      const summary = `Order enquiry:
+Name: ${name}
+Phone: ${phone}
+Product: ${product}
+Date: ${date}
+Notes: ${notes}`;
+
+      const waNumber = "919999999999"; // REPLACE
+      const waText = encodeURIComponent(summary);
+      const waUrl = https://wa.me/${waNumber}?text=${waText};
+      window.open(waUrl, '_blank');
+    }
+
+    // Accessibility hint: focus ring for keyboard users
+    (function(){ const style = document.createElement('style'); style.innerHTML = ':focus{outline:3px solid rgba(211,84,0,0.18); outline-offset:2px}'; document.head.appendChild(style);})();
+  </script>
+</body>
+</html
